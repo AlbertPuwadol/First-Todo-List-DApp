@@ -119,7 +119,7 @@ App = {
             $newTasktemplate.find('input')
                 .prop('name', taskId)
                 .prop('checked', taskCompleted)
-            // .on('click', App.toggleCompleted) 
+                .on('click', App.toggleCompleted)
 
             // Condition for put task in list
             if (taskCompleted) {
@@ -131,6 +131,13 @@ App = {
             //Show task
             $newTasktemplate.show()
         }
+    },
+
+    toggleCompleted: async (e) => {
+        App.setLoading(true)
+        const taskId = e.target.name
+        await App.todoList.toggleCompleted(taskId)
+        window.location.reload()
     }
 }
 
